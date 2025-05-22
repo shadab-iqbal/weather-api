@@ -33,9 +33,12 @@ services:
           action: rebuild
 
         # it'll watch for changes in the backend directory and sync the changes with the container real time
-        - path: .
-          target: /app
-          action: sync
+        # we do not need this now because we are using nodemon
+        # - path: .
+        #   target: /app
+        #   action: sync
+#
+
 # we do not need a volume because we are using mongodb atlas
 # define the volumes to be used by the services
 # volumes:
