@@ -11,6 +11,7 @@ const compression = require("compression");
 
 const errorHandler = require("./middlewares/errorHandler");
 const routeNotFoundHandler = require("./middlewares/routeNotFoundHandler");
+const weatherRoutes = require("./routes/weatherRoutes");
 
 const app = express();
 
@@ -30,8 +31,11 @@ app.use(cookieParser());
 // Apply rate limiting to prevent DOS attacks from the same IP
 const limiter = rateLimit({
   max: 100, // max 100 requests
-  windowMs: 60 * 60 * 1000, // within 1 hour
-  message: "Too many requests from this IP, please try again in an hour",
+  windowMs: 15 * 60 * 1000, // within 15 mintues
+  message: {
+    error: "Too many requests from this IP, please try again later.",
+    retryAfter: "15 minutes",
+  },
   // keyGenerator allows us to define a custom function
   // to generate the key to track request counts.
   keyGenerator: (req) => {
@@ -83,6 +87,8 @@ app.get("/", (req, res) => {
     message: "Welcome to the API!",
   });
 });
+
+app.use("/api/v1", weatherRoutes);
 
 // Error Handling Middlewares
 app.all("*", routeNotFoundHandler); // Handle undefined routes
