@@ -27,3 +27,8 @@ VISUAL_CROSSING_API_KEY=your-visual-crossing-api-key
 # Run in terminal
 
 `docker compose up -w`
+
+# Uninstall app
+
+`ctrl + c` to stop the container.
+Then run `docker compose down --rmi all --volumes` to remove container, images, and volumes related to this project.
