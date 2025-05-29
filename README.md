@@ -33,3 +33,7 @@ VISUAL_CROSSING_API_KEY=your-visual-crossing-api-key
 `ctrl + c` to stop the container.
 
 Then run `docker compose down --rmi all --volumes` to remove container, images, and volumes related to this project.
+
+## Project idea link
+
+https://roadmap.sh/projects/weather-api-wrapper-service
